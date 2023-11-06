@@ -14,16 +14,11 @@
     }
   ],
   "posts": [
-    {
-      "name": "user2",
-      "email": "email2@email.com",
-      "dateJoined": 11062023,
-      "id": 1
-    },
+ 
     {
       "title": "firstgif",
-      "description": "empty gif",
-      "imageURL": "imageURL",
+      "description": "good morning",
+      "imageURL": "https://media.giphy.com/media/8cOkSOuvIChHNYOyP7/giphy.gif",
       "timestamp": 1021,
       "id": 2
     }
