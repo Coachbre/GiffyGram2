@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "user1",
+      "email": "email@email.com",
+      "dateJoined": 11022023
+    },
+    {
+      "name": "user2",
+      "email": "email2@email.com",
+      "dateJoined": 11062023,
+      "id": 2
+    }
+  ],
+  "posts": [
+    {
+      "name": "user2",
+      "email": "email2@email.com",
+      "dateJoined": 11062023,
+      "id": 1
+    },
+    {
+      "title": "firstgif",
+      "description": "empty gif",
+      "imageURL": "imageURL",
+      "timestamp": 1021,
+      "id": 2
+    }
+  ],
+  "messages": []
+}
