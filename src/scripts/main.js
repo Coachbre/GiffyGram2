@@ -3,7 +3,7 @@
  */
 
 
-// Can you explain what is being imported here?
+// import needed functions from other modules
 import { getPosts, getUsers } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 
@@ -14,10 +14,11 @@ const showPostList = () => {
     postElement.innerHTML = PostList(allPosts);
   })
 }
+//runs getPosts from datamanager then adds each to the postlist
 
 
 const startGiffyGram = () => {
   showPostList();
 }
-
+//function to run showpostlist
 startGiffyGram();
