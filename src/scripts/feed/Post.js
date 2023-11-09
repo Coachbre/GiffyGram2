@@ -10,3 +10,4 @@ export const Post = (postObject) => {
       </section>
     `
 }
+//html representation for each post

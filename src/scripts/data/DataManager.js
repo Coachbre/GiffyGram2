@@ -7,6 +7,7 @@ export const getUsers = () => {
       return parsedResponse;
     })
 }
+//fetch data from users database, turn response to json, then take parsedresponse and return data
 
 export const getPosts = () => {
 
