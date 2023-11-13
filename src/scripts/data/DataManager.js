@@ -19,6 +19,7 @@ export const getPosts = () => {
     })
 }
 
+
 const loggedInUser = {
   id: 1,
   name: "Bryan",
