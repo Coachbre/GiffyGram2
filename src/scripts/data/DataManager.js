@@ -12,9 +12,7 @@ export const getUsers = () => {
 let postCollection = [];
 
 export const usePostCollection = () => {
-  //Best practice: we don't want to alter the original state, so
-  //make a copy of it and then return it
-  //The spread operator makes this quick work
+  //spread operator makes a copy and returns it
   return [...postCollection];
 }
 export const getPosts = () => {
@@ -25,6 +23,20 @@ export const getPosts = () => {
       return parsedResponse;
     })
 }
+
+export const createPost = postObj => {
+  return fetch("http://localhost:8088/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(postObj)
+
+  })
+    .then(response => response.json())
+}
+
+
 
 
 const loggedInUser = {
