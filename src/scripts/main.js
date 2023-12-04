@@ -9,6 +9,8 @@ import { PostList } from "./feed/PostList.js"
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./nav/Footer.js";
 
+
+
 const showPostList = () => {
   //Get a reference to the location on the DOM where the list will display
   const postElement = document.querySelector(".postList");
@@ -18,15 +20,36 @@ const showPostList = () => {
 }
 //runs getPosts from datamanager then adds each to the postlist
 
+
+
 const showNavBar = () => {
   //Get a reference to the location on the DOM where the nav will display
   const navElement = document.querySelector("nav");
   navElement.innerHTML = NavBar();
 }
 
-//logout button event listener
 const applicationElement = document.querySelector(".giffygram");
-//application element = selected area in main with class .giffygram
+//application element = selected area in index.html with class .giffygram
+
+//Home icon event listener
+applicationElement.addEventListener("click", event => {
+  if (event.target.id === "home") {
+    console.log("Lets go home!")
+  }
+})
+
+
+
+//Direct message icon event listener
+applicationElement.addEventListener("click", event => {
+  if (event.target.id === "directMessageIcon") {
+    console.log("Would you like to send a message?")
+  }
+})
+
+
+
+//logout button event listener
 applicationElement.addEventListener("click", event => {
   //add click event listener
   if (event.target.id === "logout") {
@@ -34,6 +57,8 @@ applicationElement.addEventListener("click", event => {
   }
 // if target with logout class is clicked, console log message
 })
+
+
 
 //footer dropdown menu eventlistener
 applicationElement.addEventListener("change", event => {
@@ -44,10 +69,14 @@ applicationElement.addEventListener("change", event => {
   }
 })
 
+
+
 const showFooter = () => {
   const footerElement = document.querySelector("footer");
   footerElement.innerHTML = Footer();
 }
+
+
 
 const startGiffyGram = () => {
   showPostList();
