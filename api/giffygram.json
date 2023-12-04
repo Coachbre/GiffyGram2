@@ -14,13 +14,20 @@
     }
   ],
   "posts": [
- 
     {
       "title": "firstgif",
       "description": "good morning",
       "imageURL": "https://media.giphy.com/media/8cOkSOuvIChHNYOyP7/giphy.gif",
       "timestamp": 10212021,
       "id": 2
+    },
+    {
+      "title": "",
+      "imageURL": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTJicW83bWlrMzh6dmVjZW1mMHhxNmlmanM5bG5vOTI5dnNtZDh1MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MS9Yq6Y718CSiDTxR5/giphy.gif",
+      "description": "Good morning again!",
+      "userId": 1,
+      "timestamp": 1701709918865,
+      "id": 3
     }
   ],
   "messages": []
