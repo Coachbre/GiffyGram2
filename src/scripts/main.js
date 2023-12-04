@@ -4,7 +4,7 @@
 
 
 // import needed functions from other modules
-import { getPosts, usePostCollection, createPost, getUsers } from "./data/DataManager.js"
+import { getPosts, usePostCollection, createPost, deletePost, getUsers } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { PostEntry } from "./feed/PostEntry.js";
 import { NavBar } from "./nav/NavBar.js";
@@ -38,10 +38,23 @@ applicationElement.addEventListener("click", event => {
 
     // be sure to import from the DataManager
     createPost(postObject)
+      .then(response => {
+        showPostList();
+      })
   }
 })
 
 
+applicationElement.addEventListener("click", event => {
+  event.preventDefault();
+  if (event.target.id.startsWith("delete")) {
+    const postId = event.target.id.split("__")[1];
+    deletePost(postId)
+      .then(response => {
+        showPostList();
+      })
+  }
+})
 
 const showPostEntry = () => {
   //Get a reference to the location on the DOM where the nav will display
