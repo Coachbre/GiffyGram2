@@ -4,12 +4,15 @@
 
 
 // import needed functions from other modules
-import { getPosts, getSinglePost, usePostCollection, createPost, updatePost, deletePost, getLoggedInUser } from "./data/DataManager.js"
+import { getPosts, getSinglePost, usePostCollection, createPost, updatePost, deletePost, 
+          getLoggedInUser, logoutUser, loginUser, registerUser, setLoggedInUser } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { PostEntry } from "./feed/PostEntry.js";
 import { PostEdit } from "./feed/PostEdit.js";
 import { NavBar } from "./nav/NavBar.js";
 import { Footer } from "./nav/Footer.js";
+import { LoginForm } from "./auth/LoginForm.js";
+import { RegisterForm } from "./auth/RegisterForm.js";
 
 const applicationElement = document.querySelector(".giffygram");
 //application element = selected area in index.html with class .giffygram
@@ -103,12 +106,14 @@ applicationElement.addEventListener("click", event => {
 
 //logout button event listener
 applicationElement.addEventListener("click", event => {
-  //add click event listener
   if (event.target.id === "logout") {
-    console.log("You clicked on logout")
+    logoutUser();
+    console.log(getLoggedInUser());
+    sessionStorage.clear();
+    checkForUser();
   }
-// if target with logout class is clicked, console log message
 })
+
 
 
 
@@ -131,7 +136,7 @@ const showEdit = (postObj) => {
 }
 
 
-
+//edit post event listener
 applicationElement.addEventListener("click", event => {
   event.preventDefault();
   if (event.target.id.startsWith("updatePost")) {
@@ -192,12 +197,77 @@ const showFilteredPosts = (year) => {
 
 
 
-
-
 const showFooter = () => {
   const footerElement = document.querySelector("footer");
   footerElement.innerHTML = Footer();
 }
+
+
+
+
+// check session storage for active user
+const checkForUser = () => {
+  if (sessionStorage.getItem("user")) {
+    setLoggedInUser(JSON.parse(sessionStorage.getItem("user")));
+    startGiffyGram();
+  } else {
+    showLoginRegister();
+  }
+}
+
+//displays login/register forms
+const showLoginRegister = () => {
+  showNavBar();
+  const entryElement = document.querySelector(".entryForm");
+  //template strings can be used here too
+  entryElement.innerHTML = `${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+  //make sure the post list is cleared out too
+  const postElement = document.querySelector(".postList");
+  postElement.innerHTML = "";
+}
+
+
+//login eventlistener
+applicationElement.addEventListener("click", event => {
+  event.preventDefault();
+  if (event.target.id === "login__submit") {
+    //collect all the details into an object
+    const userObject = {
+      name: document.querySelector("input[name='name']").value,
+      email: document.querySelector("input[name='email']").value
+    }
+    loginUser(userObject)
+      .then(dbUserObj => {
+        if (dbUserObj) {
+          sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+          startGiffyGram();
+        } else {
+          //got a false value - no user
+          const entryElement = document.querySelector(".entryForm");
+          entryElement.innerHTML = `<p class="center">That user does not exist. Please try again or register for your free account.</p> ${LoginForm()} <hr/> <hr/> ${RegisterForm()}`;
+        }
+      })
+  }
+})
+
+
+//register user eventlistener
+applicationElement.addEventListener("click", event => {
+  event.preventDefault();
+  if (event.target.id === "register__submit") {
+    //collect all the details into an object
+    const userObject = {
+      name: document.querySelector("input[name='registerName']").value,
+      email: document.querySelector("input[name='registerEmail']").value
+    }
+    registerUser(userObject)
+      .then(dbUserObj => {
+        sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+        startGiffyGram();
+      })
+  }
+})
+
 
 
 
@@ -208,4 +278,4 @@ const startGiffyGram = () => {
   showFooter();
 }
 
-startGiffyGram();
+checkForUser();

@@ -11,6 +11,11 @@
       "email": "email2@email.com",
       "dateJoined": 11062023,
       "id": 2
+    },
+    {
+      "name": "breanna",
+      "email": "bre@bre.com",
+      "id": 3
     }
   ],
   "posts": [
