@@ -15,9 +15,10 @@
   ],
   "posts": [
     {
-      "title": "firstgif",
-      "description": "good morning",
+      "title": "First gif ever",
       "imageURL": "https://media.giphy.com/media/8cOkSOuvIChHNYOyP7/giphy.gif",
+      "description": "good morning",
+      "userId": 1,
       "timestamp": 10212021,
       "id": 2
     },

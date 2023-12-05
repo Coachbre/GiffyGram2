@@ -24,6 +24,27 @@ export const getPosts = () => {
     })
 }
 
+export const getSinglePost = (postId) => {
+  return fetch(`http://localhost:8088/posts/${postId}`)
+    .then(response => response.json())
+}
+
+
+export const updatePost = postObj => {
+  return fetch(`http://localhost:8088/posts/${postObj.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(postObj)
+
+  })
+    .then(response => response.json())
+    .then(getPosts)
+}
+//uses PUT method to update post based on the given id, then returns updated list
+
+
 export const createPost = postObj => {
   return fetch("http://localhost:8088/posts", {
     method: "POST",
@@ -50,6 +71,7 @@ export const deletePost = postId => {
     .then(response => response.json())
     .then(getPosts)
 }
+//deletes post with matching post id then returns updated list of posts
 
 
 const loggedInUser = {
